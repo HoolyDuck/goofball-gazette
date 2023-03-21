@@ -12,9 +12,8 @@ export class AuthService {
     private jwtService: JwtService,
   ) {}
 
-  async login(user: UserCreateDto) {
-    const findUser = await this.validateUser(user);
-    return this.generateJWT(findUser);
+  async login(user: User) {
+    return this.generateJWT(user);
   }
 
   async register(user: UserCreateDto) {
@@ -34,9 +33,9 @@ export class AuthService {
   }
 
   private async generateJWT(user: User) {
+    console.log(user);
     const payload = {
       id: user.id,
-      email: user.email,
       username: user.username,
     };
     return {
@@ -44,9 +43,10 @@ export class AuthService {
     };
   }
 
-  public async validateUser(user: UserCreateDto) {
-    const findUser = await this.userService.findByEmail(user.email);
-    if (findUser && (await bcrypt.compare(user.password, findUser.password))) {
+  public async validateUser(username: string, password: string) : Promise<User> {
+    const findUser = await this.userService.findByEmail(username);
+    if (findUser && (await bcrypt.compare(password, findUser.password))) {
+
       return findUser;
     }
     throw new UnauthorizedException('Invalid credentials');

@@ -4,13 +4,14 @@ import { Get, Param, Post, Put, Delete } from '@nestjs/common';
 import { User } from './user.entity';
 import { UserCreateDto } from './dto/user-create.dto';
 import { JWTAuthGuard } from 'src/auth/jwt-auth.guard';
+import { AuthGuard } from '@nestjs/passport';
 
 @Controller('user')
 export class UserController {
   constructor(private readonly userService: UserService) {}
 
   @Get()
-  @UseGuards(JWTAuthGuard)
+  @UseGuards(AuthGuard('jwt'))
   async findAll(): Promise<any[]> {
     return await this.userService.findAll();
   }

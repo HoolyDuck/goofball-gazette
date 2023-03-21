@@ -22,8 +22,8 @@ function App() {
         onClick={() =>
           dispatch(
             login({
-              email: "pidorazina@gmaul.com",
-              password: "garazhpidor",
+              username: "test",
+              password: "test",
             })
           )
         }
