@@ -4,6 +4,8 @@ import "./App.css";
 import { useAppDispatch, useAppSelector } from "./store/hooks/redux";
 import { userSlice } from "./store/reducers/UserSlice";
 import { login } from "./store/reducers/ActionCreators";
+import { Link, Route, Router, Routes } from "react-router-dom";
+import { Login } from "./components/login/Login";
 
 function App() {
   const dispatch = useAppDispatch();
@@ -11,26 +13,16 @@ function App() {
 
   return (
     <div className="App">
+      <Link to="/login">Login</Link>
       <p>goofball gazette</p>
-      {JSON.stringify(user)}
-      <input
-        type="text"
-        className="email"
-      />
-
-      <button
-        onClick={() =>
-          dispatch(
-            login({
-              username: "test",
-              password: "test",
-            })
-          )
-        }
-      >
-        Login
-      </button>
-      <p>Error: {user.error}</p>
+      <p>{JSON.stringify(user.user)}</p>
+    
+      <Routes>
+        <Route
+          path="/login"
+          element={<Login />}
+        />
+      </Routes>
     </div>
   );
 }
