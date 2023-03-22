@@ -36,7 +36,6 @@ export class AuthService {
   }
 
   private async generateJWT(user: User) {
-    console.log(user);
     const payload = {
       id: user.id,
       username: user.username,

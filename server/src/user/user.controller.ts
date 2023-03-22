@@ -24,7 +24,6 @@ export class UserController {
   @Post()
   @UseGuards(AuthGuard('jwt'))
   async create(@Body() user: UserCreateDto): Promise<any> {
-    console.log(user);
     return await this.userService.create(user);
   }
 

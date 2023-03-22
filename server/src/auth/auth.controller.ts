@@ -1,4 +1,4 @@
-import { Body, Controller, Post, Req, Res, UseGuards } from '@nestjs/common';
+import { Body, ClassSerializerInterceptor, Controller, Post, Req, Res, UseGuards, UseInterceptors } from '@nestjs/common';
 import { UserCreateDto } from 'src/user/dto/user-create.dto';
 import { AuthService } from './auth.service';
 import { Response, Request } from 'express';
@@ -11,6 +11,7 @@ export class AuthController {
 
   @Post('login')
   @UseGuards(AuthGuard('local'))
+  @UseInterceptors(ClassSerializerInterceptor)
   async login(
     @Req() req: Request,
     @Res({ passthrough: true }) response: Response,
@@ -22,10 +23,11 @@ export class AuthController {
       expires: new Date(Date.now() + 900000),
     });
 
-    return req.user;
+    return <User>req.user;
   }
 
   @Post('register')
+  @UseInterceptors(ClassSerializerInterceptor)
   async register(
     @Body() user: UserCreateDto,
     @Res({ passthrough: true }) response: Response,
@@ -37,6 +39,6 @@ export class AuthController {
       expires: new Date(Date.now() + 900000),
     });
 
-    return newUser;
+    return <User>newUser;
   }
 }
