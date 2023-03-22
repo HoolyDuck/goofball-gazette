@@ -11,7 +11,6 @@ export class AuthController {
 
   @Post('login')
   @UseGuards(AuthGuard('local'))
-  @UseInterceptors(ClassSerializerInterceptor)
   async login(
     @Req() req: Request,
     @Res({ passthrough: true }) response: Response,
@@ -27,7 +26,6 @@ export class AuthController {
   }
 
   @Post('register')
-  @UseInterceptors(ClassSerializerInterceptor)
   async register(
     @Body() user: UserCreateDto,
     @Res({ passthrough: true }) response: Response,
