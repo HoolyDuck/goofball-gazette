@@ -15,7 +15,7 @@ export class AuthController {
     @Req() req: Request,
     @Res({ passthrough: true }) response: Response,
   ) {
-    const access_token = await this.authService.login(<User>req.user);
+    const { access_token } = await this.authService.login(<User>req.user);
 
     response.cookie('access_token', access_token, {
       httpOnly: true,
@@ -26,7 +26,17 @@ export class AuthController {
   }
 
   @Post('register')
-  async register(@Body() registerDto: UserCreateDto) {
-    return this.authService.register(registerDto);
+  async register(
+    @Body() user: UserCreateDto,
+    @Res({ passthrough: true }) response: Response,
+  ) {
+    const { newUser, token } = await this.authService.register(user);
+
+    response.cookie('access_token', token, {
+      httpOnly: true,
+      expires: new Date(Date.now() + 900000),
+    });
+
+    return newUser;
   }
 }

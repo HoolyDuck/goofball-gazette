@@ -16,7 +16,7 @@ export class AuthService {
     return this.generateJWT(user);
   }
 
-  async register(user: UserCreateDto) {
+  async register(user: UserCreateDto): Promise<{ newUser: User, token: string }> {
     const userExists = await this.userService.findByEmail(user.email);
 
     if (userExists) {
@@ -29,7 +29,10 @@ export class AuthService {
       password: hashPass,
     });
 
-    return this.generateJWT(newUser);
+    const { access_token } = await this.generateJWT(newUser);
+
+    return { newUser: newUser, token: access_token };
+
   }
 
   private async generateJWT(user: User) {
