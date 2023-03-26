@@ -10,11 +10,9 @@ import { Login } from "./components/login/Login";
 function App() {
   const dispatch = useAppDispatch();
   const user = useAppSelector((state) => state.userReducer);
-
   useEffect(() => {
-    dispatch(auth());
+    if (!user.isAuth) dispatch(auth());
   }, []);
-
   return (
     <div className="App">
       <Link to="/login">Login</Link>
