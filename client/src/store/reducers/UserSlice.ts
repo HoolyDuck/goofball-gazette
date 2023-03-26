@@ -36,6 +36,10 @@ export const userSlice = createSlice({
         userLoadedError: (state, action: PayloadAction<string>) => {
             state.isLoading = false;
             state.error = action.payload;
+        },
+
+        userNotLoaded: (state) => {
+            state.isLoading = false;
         }
 
         

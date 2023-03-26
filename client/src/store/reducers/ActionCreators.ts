@@ -22,6 +22,6 @@ export const auth = () => async (dispatch: AppDispatch) => {
         const response = await $axiosInstance.get('auth/auth');
         dispatch(userSlice.actions.userLoaded(response.data));
     } catch (error: any) {
-        dispatch(userSlice.actions.userLoadedError(error.message));
+        dispatch(userSlice.actions.userNotLoaded());
     }
 }
