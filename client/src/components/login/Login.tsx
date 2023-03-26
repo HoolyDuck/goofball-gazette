@@ -13,28 +13,39 @@ export function Login() {
 
   return (
     <div className="login_view">
-      <div className="login_form">
-        <div className="login_form_header">
-          <h1>Goofball Gazette</h1>
-
-          <p>Sign in to your account</p>
-          <input
-            onInput={(e) => {
+      <form className="login_form">
+        <h1 className="login_form__signin">Sign in</h1>
+        {user.error && <p className="error_text">{user.error}</p>}
+        <div className="login_form__element">
+          <label htmlFor="email">Email</label>
+          <div className="login_form__input">
+            <input
+              onInput={(e) => {
                 setEmail(e.currentTarget.value);
-            }}
-            type="text"
-            className="email"
-            placeholder="Email"
-          />
-          <input
-            onInput={(e) => {
+              }}
+              value={email}
+              type="text"
+              className="email"
+              placeholder="Email"
+            />
+          </div>
+        </div>
+        <div className="login_form__element">
+          <label htmlFor="password">Password</label>
+          <div className="login_form__input">
+            <input
+              onInput={(e) => {
                 setPassword(e.currentTarget.value);
-            }}
-            type="text"
-            className="password"
-            placeholder="Password"
-          />
-          {user.error && <p>{user.error}</p>}
+              }}
+              value={password}
+              type="password"
+              className="password"
+              placeholder="Password"
+            />
+          </div>
+        </div>
+
+        <div className="login_form__element">
           <button
             onClick={buttonLogin}
             className="login_button"
@@ -42,11 +53,18 @@ export function Login() {
             Login
           </button>
         </div>
-      </div>
+
+        <div className="login_form__element">
+          <p className="login_form__signup">
+            Don't have an account? <a href="#">Sign up</a>
+          </p>
+        </div>
+      </form>
     </div>
   );
 
-  function buttonLogin() {
+  function buttonLogin(e: any) {
+    e.preventDefault();
     dispatch(
       login({
         username: email,
