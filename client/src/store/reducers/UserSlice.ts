@@ -5,22 +5,20 @@ interface UserState {
     user: IUser;
     isLoading: boolean;
     error: string;
+    isAuth: boolean;
 }
 
 const initialState: UserState = {
     user: {} as IUser,
     isLoading: false,
     error: "",
-
+    isAuth: false
 } 
 
 export const userSlice = createSlice({
     name: "user",
     initialState,
     reducers: {
-        setUser: (state, action: PayloadAction<IUser>) => {
-            state.user = action.payload;
-        },
 
         userLoading: (state) => {
             state.isLoading = true;
@@ -30,6 +28,7 @@ export const userSlice = createSlice({
             state.isLoading = false;
             state.user = action.payload;
             state.error = "";
+            state.isAuth = true;
 
         },
 
@@ -40,6 +39,7 @@ export const userSlice = createSlice({
 
         userNotLoaded: (state) => {
             state.isLoading = false;
+            state.isAuth = false;
         }
 
         
