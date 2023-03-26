@@ -3,6 +3,7 @@ import { useState } from "react";
 import "./Login.css";
 import { useAppDispatch, useAppSelector } from "../../store/hooks/redux";
 import { login } from "../../store/reducers/ActionCreators";
+import { useNavigate } from "react-router-dom";
 
 export function Login() {
   const dispatch = useAppDispatch();
@@ -10,6 +11,8 @@ export function Login() {
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+  const navigate = useNavigate();
 
   return (
     <div className="login_view">
@@ -66,10 +69,13 @@ export function Login() {
   function buttonLogin(e: any) {
     e.preventDefault();
     dispatch(
-      login({
-        username: email,
-        password: password,
-      })
+      login(
+        {
+          username: email,
+          password: password,
+        },
+        () => navigate("/", { replace: true })
+      )
     );
   }
 }

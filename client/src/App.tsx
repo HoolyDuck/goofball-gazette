@@ -16,11 +16,15 @@ function App() {
       <Link to="/login">Login</Link>
       <p>goofball gazette</p>
       <p>{JSON.stringify(user.user)}</p>
-    
+
       <Routes>
         <Route
           path="/login"
           element={<Login />}
+        />
+        <Route
+          path="/"
+          element={<div>Home</div>}
         />
       </Routes>
     </div>
