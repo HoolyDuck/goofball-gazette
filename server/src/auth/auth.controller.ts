@@ -1,4 +1,4 @@
-import { Body, ClassSerializerInterceptor, Controller, Post, Req, Res, UseGuards, UseInterceptors } from '@nestjs/common';
+import { Body, ClassSerializerInterceptor, Controller, Get, Post, Req, Res, UseGuards, UseInterceptors } from '@nestjs/common';
 import { UserCreateDto } from 'src/user/dto/user-create.dto';
 import { AuthService } from './auth.service';
 import { Response, Request } from 'express';
@@ -38,5 +38,11 @@ export class AuthController {
     });
 
     return <User>newUser;
+  }
+
+  @Get('auth')
+  @UseGuards(AuthGuard('jwt'))
+  async auth(@Req() req: Request) {
+    return <User>req.user;
   }
 }

@@ -1,0 +1,82 @@
+.login_view {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.login_form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-width: 20rem;
+  min-height: 20rem;
+  margin: auto;
+  gap: 2rem;
+  background-color: white;
+  padding: 3rem;
+  border-radius: 20px;
+}
+
+.login_form__signin {
+    font-size: 2rem;
+    margin: 0;
+    padding: 0;
+    font-weight: bold;
+    text-align: center;
+    text-transform: uppercase;
+    color: #e50000;
+    word-wrap: break-word;
+    max-width: 12rem;
+}
+
+.error_text {
+  align-self: start;
+}
+
+.login_form__element {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  gap: 0.5rem;
+}
+
+.login_form__element label {
+  align-self: start;
+}
+
+.login_form__input {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.login_form__input input {
+  width: 100%;
+  border: 2px solid #d0d0d0;
+  background-color: rgb(255, 255, 255);
+  border-radius: 10px;
+  padding: 0.8rem;
+}
+
+.login_form button {
+  width: 100%;
+  padding: 0.8rem;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  background-color: #e50000;
+  font-weight: bold;
+  box-shadow: 4px 4px 8px 0px rgba(0, 0, 0, 0.2);
+  text-transform: uppercase;
+  transition: all 0.2s ease-in-out;
+}
+
+.login_form button:hover {
+  background-color: #ff0000;
+  cursor: pointer;
+}
