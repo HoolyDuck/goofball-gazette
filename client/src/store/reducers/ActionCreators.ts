@@ -25,3 +25,14 @@ export const auth = () => async (dispatch: AppDispatch) => {
         dispatch(userSlice.actions.userNotLoaded());
     }
 }
+
+export const register = (user: any, callback: any) => async (dispatch: AppDispatch) => {
+    try {
+        dispatch(userSlice.actions.userLoading());
+        const response = await $axiosInstance.post('auth/register', user);
+        dispatch(userSlice.actions.userLoaded(response.data));
+        callback();
+    } catch (error: any) {
+        dispatch(userSlice.actions.userLoadedError(error.message));
+    }
+}

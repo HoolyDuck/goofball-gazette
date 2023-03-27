@@ -32,6 +32,10 @@ function App() {
             element={<Login />}
           />
           <Route
+            path="/register"
+            element={<Login />}
+          />
+          <Route
             path="/"
             element={<div>Home</div>}
           />

@@ -2,8 +2,8 @@ import { useState } from "react";
 
 import "./Login.css";
 import { useAppDispatch, useAppSelector } from "../../store/hooks/redux";
-import { login } from "../../store/reducers/ActionCreators";
-import { useNavigate } from "react-router-dom";
+import { login, register } from "../../store/reducers/ActionCreators";
+import { Link, useNavigate } from "react-router-dom";
 
 export function Login() {
   const dispatch = useAppDispatch();
@@ -11,14 +11,37 @@ export function Login() {
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [userName, setUserName] = useState("");
+
+  const [isRegister, setIsRegister] = useState(false);
 
   const navigate = useNavigate();
 
   return (
     <div className="login_view">
       <form className="login_form">
-        <h1 className="login_form__signin">Sign in</h1>
+        <h1 className="login_form__signin">
+          {isRegister ? "Sign up" : "Sign in"}
+        </h1>
         {user.error && <p className="error_text">{user.error}</p>}
+
+        {isRegister && (
+          <div className="login_form__element">
+            <label htmlFor="username">Username</label>
+            <div className="login_form__input">
+              <input
+                onInput={(e) => {
+                  setUserName(e.currentTarget.value);
+                }}
+                value={userName}
+                type="text"
+                id="username"
+                placeholder="Username"
+              />
+            </div>
+          </div>
+        )}
+
         <div className="login_form__element">
           <label htmlFor="email">Email</label>
           <div className="login_form__input">
@@ -28,7 +51,7 @@ export function Login() {
               }}
               value={email}
               type="text"
-              className="email"
+              id="email"
               placeholder="Email"
             />
           </div>
@@ -42,24 +65,52 @@ export function Login() {
               }}
               value={password}
               type="password"
-              className="password"
+              id="password"
               placeholder="Password"
             />
           </div>
         </div>
 
         <div className="login_form__element">
-          <button
-            onClick={buttonLogin}
-            className="login_button"
-          >
-            Login
-          </button>
+          {isRegister ? (
+            <button
+              onClick={buttonRegister}
+              className="login_button"
+            >
+              Register
+            </button>
+          ) : (
+            <button
+              onClick={buttonLogin}
+              className="login_button"
+            >
+              Login
+            </button>
+          )}
         </div>
 
         <div className="login_form__element">
           <p className="login_form__signup">
-            Don't have an account? <a href="#">Sign up</a>
+            {isRegister ? "Already have an account?" : "Don't have an account?"}{" "}
+            {isRegister ? (
+              <Link
+                to="/login"
+                onClick={(e) => {
+                  setIsRegister(false);
+                }}
+              >
+                Sign in
+              </Link>
+            ) : (
+              <Link
+                to="/register"
+                onClick={(e) => {
+                  setIsRegister(true);
+                }}
+              >
+                Sign up
+              </Link>
+            )}
           </p>
         </div>
       </form>
@@ -72,6 +123,20 @@ export function Login() {
       login(
         {
           username: email,
+          password: password,
+        },
+        () => navigate("/", { replace: true })
+      )
+    );
+  }
+
+  function buttonRegister(e: any) {
+    e.preventDefault();
+    dispatch(
+      register(
+        {
+          username: userName,
+          email: email,
           password: password,
         },
         () => navigate("/", { replace: true })
