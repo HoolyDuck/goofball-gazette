@@ -25,20 +25,18 @@ function App() {
   return (
     <div className="App">
       <Header />
-      <Link to="/login">Login</Link>
-      <p>goofball gazette</p>
-      <p>{JSON.stringify(user.user)}</p>
-
-      <Routes>
-        <Route
-          path="/login"
-          element={<Login />}
-        />
-        <Route
-          path="/"
-          element={<div>Home</div>}
-        />
-      </Routes>
+      <main>
+        <Routes>
+          <Route
+            path="/login"
+            element={<Login />}
+          />
+          <Route
+            path="/"
+            element={<div>Home</div>}
+          />
+        </Routes>
+      </main>
     </div>
   );
 }
