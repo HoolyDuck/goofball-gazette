@@ -3,6 +3,9 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+
+  width: 100%;
+  height: 100%;
 }
 
 .login_form {
@@ -20,15 +23,15 @@
 }
 
 .login_form__signin {
-    font-size: 2rem;
-    margin: 0;
-    padding: 0;
-    font-weight: bold;
-    text-align: center;
-    text-transform: uppercase;
-    color: #e50000;
-    word-wrap: break-word;
-    max-width: 12rem;
+  font-size: 2rem;
+  margin: 0;
+  padding: 0;
+  font-weight: bold;
+  text-align: center;
+  text-transform: uppercase;
+  color: #e50000;
+  word-wrap: break-word;
+  max-width: 12rem;
 }
 
 .error_text {
