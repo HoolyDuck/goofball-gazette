@@ -20,7 +20,7 @@ export default function Header() {
         </div>
         {user.isAuth ? (
           <div className="header__profile">
-            <Link to="/profile">Profile</Link>
+            <Link to="/profile">{user.user.username}</Link>
           </div>
         ) : (
           <div className="header__login">

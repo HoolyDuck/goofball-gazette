@@ -16,6 +16,12 @@
   user-select: none;
 }
 
-.header__login {
+.header__login a {
   text-decoration: none;
+}
+
+.header__profile a {
+    text-decoration: none;
+    color: red;
+    font-weight: bolder;
 }
