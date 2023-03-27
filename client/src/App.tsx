@@ -6,15 +6,25 @@ import { userSlice } from "./store/reducers/UserSlice";
 import { auth, login } from "./store/reducers/ActionCreators";
 import { Link, Route, Router, Routes } from "react-router-dom";
 import { Login } from "./components/login/Login";
+import Header from "./components/header/Header";
 
 function App() {
   const dispatch = useAppDispatch();
   const user = useAppSelector((state) => state.userReducer);
   useEffect(() => {
-    if (!user.isAuth) dispatch(auth());
+    let isCancelled = false;
+
+    if (!isCancelled) {
+      if (!user.isAuth) dispatch(auth());
+    }
+
+    return () => {
+      isCancelled = true;
+    };
   }, []);
   return (
     <div className="App">
+      <Header />
       <Link to="/login">Login</Link>
       <p>goofball gazette</p>
       <p>{JSON.stringify(user.user)}</p>
