@@ -3,7 +3,7 @@ import { useState } from "react";
 import "./Login.css";
 import { useAppDispatch, useAppSelector } from "../../store/hooks/redux";
 import { login, register } from "../../store/reducers/ActionCreators";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, Route, useNavigate, useLocation } from "react-router-dom";
 
 export function Login() {
   const dispatch = useAppDispatch();
@@ -13,7 +13,8 @@ export function Login() {
   const [password, setPassword] = useState("");
   const [userName, setUserName] = useState("");
 
-  const [isRegister, setIsRegister] = useState(false);
+  const location = useLocation();
+  const [isRegister, setIsRegister] = useState(location.pathname === "/register");
 
   const navigate = useNavigate();
 
