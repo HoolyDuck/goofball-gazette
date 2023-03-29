@@ -7,6 +7,7 @@ import { auth, login } from "./store/reducers/ActionCreators";
 import { Link, Route, Router, Routes } from "react-router-dom";
 import { Login } from "./components/login/Login";
 import Header from "./components/header/Header";
+import { MainPage } from "./views/MainPage/MainPage";
 
 function App() {
   const dispatch = useAppDispatch();
@@ -37,7 +38,7 @@ function App() {
           />
           <Route
             path="/"
-            element={<div>Home</div>}
+            element={<MainPage />}
           />
         </Routes>
       </main>
