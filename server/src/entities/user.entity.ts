@@ -2,6 +2,7 @@ import { Entity, Column, PrimaryGeneratedColumn } from "typeorm";
 import { Exclude } from "class-transformer";
 import { OneToMany } from "typeorm";
 import { BlogPost } from "./blogpost.entity";
+import { Comment } from "./comment.entity";
 
 @Entity()
 export class User {
@@ -24,5 +25,11 @@ export class User {
         nullable: true,
     })  
     blogPosts: BlogPost[];
+
+    @OneToMany(() => Comment, comment => comment.user, {
+        cascade: true,
+        nullable: true,
+    })
+    comments: Comment[];
 
 }
