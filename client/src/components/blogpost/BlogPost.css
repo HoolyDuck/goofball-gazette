@@ -1,0 +1,26 @@
+.blogpost {
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    justify-content: center;
+    background-color: #f9f9f9;
+    padding: 20px;
+    box-shadow: 1px 1px 5px 1px rgba(0, 0, 0, 0.2);
+    gap: .5rem;
+}
+
+.blogpost__title {
+    font-size: 2rem;
+    font-weight: bold;
+    margin: 0;
+}
+
+.blogpost__content {
+    margin: 0;
+}
+
+.line {
+    width: 100%;
+    height: 1.5px;
+    background-color: #ffadad;
+}

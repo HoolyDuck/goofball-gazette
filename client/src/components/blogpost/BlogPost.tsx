@@ -1,3 +1,6 @@
+import React from 'react';
+import './BlogPost.css';
+
 type BlogPostProps = {
     title: string;
     content: string;
@@ -6,8 +9,9 @@ type BlogPostProps = {
 export function BlogPost(props: BlogPostProps) {
     return (
         <div className="blogpost">
-            <h1>{props.title}</h1>
-            <p>{props.content}</p>
+            <p className="blogpost__title">{props.title}</p>
+            <span className='line'> </span>
+            <p className="blogpost__content">{props.content}</p>
         </div>
     )
 }
