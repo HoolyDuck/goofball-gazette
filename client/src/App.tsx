@@ -8,40 +8,30 @@ import { Link, Route, Router, Routes } from "react-router-dom";
 import { Login } from "./components/login/Login";
 import Header from "./components/header/Header";
 import { MainPage } from "./views/MainPage/MainPage";
+import  AuthProvider from "./providers/auth.provider";
 
 function App() {
-  const dispatch = useAppDispatch();
-  const user = useAppSelector((state) => state.userReducer);
-  useEffect(() => {
-    let isCancelled = false;
-
-    if (!isCancelled) {
-      if (!user.isAuth) dispatch(auth());
-    }
-
-    return () => {
-      isCancelled = true;
-    };
-  }, []);
   return (
     <div className="App">
-      <Header />
-      <main>
-        <Routes>
-          <Route
-            path="/login"
-            element={<Login />}
-          />
-          <Route
-            path="/register"
-            element={<Login />}
-          />
-          <Route
-            path="/"
-            element={<MainPage />}
-          />
-        </Routes>
-      </main>
+      <AuthProvider>
+        <Header />
+        <main>
+          <Routes>
+            <Route
+              path="/login"
+              element={<Login />}
+            />
+            <Route
+              path="/register"
+              element={<Login />}
+            />
+            <Route
+              path="/"
+              element={<MainPage />}
+            />
+          </Routes>
+        </main>
+      </AuthProvider>
     </div>
   );
 }

@@ -3,9 +3,9 @@ import { BlogPost } from "../../components/blogpost/BlogPost";
 import { $axiosInstance } from "../../http/axios";
 
 type BlogPost = {
-    title: string;
-    content: string;
-}
+  title: string;
+  content: string;
+};
 
 export function MainPage() {
   const [posts, setPosts] = useState([] as BlogPost[]);
@@ -18,9 +18,10 @@ export function MainPage() {
 
   return (
     <div className="mainpage">
-      {posts.map((post) => {
+      {posts.map((post, key) => {
         return (
           <BlogPost
+            key={key}
             title={post.title}
             content={post.content}
           />
