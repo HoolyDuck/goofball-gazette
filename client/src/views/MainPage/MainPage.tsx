@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { BlogPost } from "../../components/blogpost/BlogPost";
 import { $axiosInstance } from "../../http/axios";
+import "./MainPage.css";
 
 type BlogPost = {
   title: string;
