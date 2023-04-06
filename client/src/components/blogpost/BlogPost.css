@@ -1,8 +1,12 @@
 .blogpost {
+    min-height: 20rem;
+    max-height: 30rem;
+
+    flex-grow: 1;
+
     display: flex;
     flex-direction: column;
     align-items: left;
-    justify-content: center;
     background-color: #f9f9f9;
     padding: 20px;
     box-shadow: 1px 1px 5px 1px rgba(0, 0, 0, 0.2);
@@ -23,4 +27,10 @@
     width: 100%;
     height: 1.5px;
     background-color: #ffadad;
+}
+
+.blogpost img {
+    max-height: 20rem;
+    aspect-ratio: 1/1;
+    object-fit: cover;
 }

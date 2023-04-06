@@ -1,6 +1,6 @@
 .mainpage {
   display: flex;
-  flex-direction: column;
+  flex-wrap: wrap;
   padding: 1.5rem;
   height: 100%;
   width: 80%;
