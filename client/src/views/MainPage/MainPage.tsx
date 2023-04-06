@@ -1,10 +1,12 @@
 import { useEffect, useState } from "react";
 import { BlogPost } from "../../components/blogpost/BlogPost";
 import { $axiosInstance } from "../../http/axios";
+import "./MainPage.css";
 
 type BlogPost = {
   title: string;
   content: string;
+  description: string;
 };
 
 export function MainPage() {
@@ -24,6 +26,7 @@ export function MainPage() {
             key={key}
             title={post.title}
             content={post.content}
+            description={post.description}
           />
         );
       })}

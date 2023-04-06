@@ -14,6 +14,11 @@ export class BlogPost {
     @Column()
     content: string;
 
+    @Column({
+        nullable: true,
+    })
+    description: string;
+
     @ManyToOne(() => User, user => user.blogPosts, {
         nullable: false,
         eager: true,
