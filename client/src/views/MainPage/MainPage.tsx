@@ -20,6 +20,7 @@ export function MainPage() {
 
   return (
     <div className="mainpage">
+      <div className="section__blogposts">
       {posts.map((post, key) => {
         return (
           <BlogPost
@@ -30,6 +31,7 @@ export function MainPage() {
           />
         );
       })}
+      </div>
     </div>
   );
 }
