@@ -2,6 +2,8 @@
     min-height: 20rem;
     max-height: 30rem;
 
+    max-width: 30rem;
+
     flex-grow: 1;
 
     display: flex;
@@ -29,8 +31,3 @@
     background-color: #ffadad;
 }
 
-.blogpost img {
-    max-height: 20rem;
-    aspect-ratio: 1/1;
-    object-fit: cover;
-}
