@@ -8,3 +8,12 @@
   background-color: #ffffff;
   gap: 1rem;
 }
+
+.section__blogposts {
+  max-width: 40rem;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  
+}
+

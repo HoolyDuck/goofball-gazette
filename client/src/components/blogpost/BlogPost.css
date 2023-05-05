@@ -30,7 +30,7 @@
 }
 
 .blogpost img {
-    max-height: 20rem;
-    aspect-ratio: 1/1;
+    width: 100%;
     object-fit: cover;
+    object-position: center;
 }
