@@ -9,6 +9,7 @@ import { Login } from "./components/login/Login";
 import Header from "./components/header/Header";
 import { MainPage } from "./views/MainPage/MainPage";
 import  AuthProvider from "./providers/auth.provider";
+import { BlogpostPage } from "./views/BlogpostPage/BlogpostPage";
 
 function App() {
   return (
@@ -28,6 +29,10 @@ function App() {
             <Route
               path="/"
               element={<MainPage />}
+            />
+            <Route
+              path="/blogpost/:id"
+              element={<BlogpostPage />}
             />
           </Routes>
         </main>
