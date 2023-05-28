@@ -2,6 +2,9 @@ import { useEffect, useState } from "react";
 import { BlogPost } from "../../components/blogpost/BlogPost";
 import { $axiosInstance } from "../../http/axios";
 import "./MainPage.css";
+import { fetchBlogPosts } from "../../store/reducers/BlogPostSlice";
+import { useAppDispatch, useAppSelector } from "../../store/hooks/redux";
+
 
 type BlogPost = {
   title: string;
@@ -10,12 +13,10 @@ type BlogPost = {
 };
 
 export function MainPage() {
-  const [posts, setPosts] = useState([] as BlogPost[]);
-
+  const posts = useAppSelector((state) => state.blogpostReducer.blogposts );
+  const dispatch = useAppDispatch();
   useEffect(() => {
-    $axiosInstance.get("/blogposts").then((res) => {
-      setPosts(() => res.data);
-    });
+    dispatch(fetchBlogPosts());
   }, []);
 
   return (
