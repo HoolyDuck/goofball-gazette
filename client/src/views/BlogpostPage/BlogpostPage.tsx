@@ -19,7 +19,7 @@ type Blogpost = {
 };
 
 export function BlogpostPage() {
-  const [blogpost, setBlogpost] = useState({} as Blogpost);
+  const [blogpost, setBlogpost] = useState<Blogpost>({} as Blogpost);
 
   let id = useLocation().pathname.split("/")[2];
 
@@ -37,8 +37,8 @@ export function BlogpostPage() {
         <p className="blogpost_page__content">{blogpost.content}</p>
       </article>
       <div className="blogpost_page__comments">
-        {blogpost.comments?.map((comment) => (
-          <div className="blogpost_page__comment">
+        {blogpost.comments?.map((comment, key) => (
+          <div className="blogpost_page__comment" key={key}>
             <h3 className="blogpost_page__comment__username">
               {comment.user.username}
             </h3>
