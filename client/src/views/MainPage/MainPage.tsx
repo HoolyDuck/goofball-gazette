@@ -12,7 +12,7 @@ type BlogPost = {
 };
 
 export function MainPage() {
-  const { data: posts, error, isLoading } = blogPostApi.useFetchBlogPostsQuery(3);
+  const { data: posts, error, isLoading } = blogPostApi.useFetchBlogPostsQuery();
 
   return (
     <div className="mainpage">
@@ -20,7 +20,7 @@ export function MainPage() {
         {isLoading ? (
           <h1>Loading...</h1>
         ) : (
-          posts.map((post: any, key: any) => (
+          posts?.map((post: any, key: any) => (
             <BlogPost
               key={key}
               title={post.title}
