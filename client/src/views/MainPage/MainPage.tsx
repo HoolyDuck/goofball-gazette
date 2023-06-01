@@ -5,7 +5,6 @@ import "./MainPage.css";
 import { fetchBlogPosts } from "../../store/reducers/BlogPostSlice";
 import { useAppDispatch, useAppSelector } from "../../store/hooks/redux";
 
-
 type BlogPost = {
   title: string;
   content: string;
@@ -13,7 +12,9 @@ type BlogPost = {
 };
 
 export function MainPage() {
-  const posts = useAppSelector((state) => state.blogpostReducer.blogposts );
+  const posts = useAppSelector((state) => state.blogpostReducer.blogposts);
+  const isLoading = useAppSelector((state) => state.blogpostReducer.loading);
+
   const dispatch = useAppDispatch();
   useEffect(() => {
     dispatch(fetchBlogPosts());
@@ -22,16 +23,18 @@ export function MainPage() {
   return (
     <div className="mainpage">
       <div className="section__blogposts">
-      {posts.map((post, key) => {
-        return (
-          <BlogPost
-            key={key}
-            title={post.title}
-            content={post.content}
-            description={post.description}
-          />
-        );
-      })}
+        {isLoading ? (
+          <h1>Loading...</h1>
+        ) : (
+          posts.map((post, key) => (
+            <BlogPost
+              key={key}
+              title={post.title}
+              content={post.content}
+              description={post.description}
+            />
+          ))
+        )}
       </div>
     </div>
   );
