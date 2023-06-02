@@ -3,10 +3,10 @@ import goofLogo from "../../assets/gooflogo.svg";
 
 import "./Header.css";
 import { useAppSelector } from "../../store/hooks/redux";
+import { selectUser } from "../../store/reducers/authSlice";
 
 export default function Header() {
-  const user = useAppSelector((state) => state.userReducer);
-
+  const user = useAppSelector(selectUser);
   return (
     <header>
       <div className="header">
@@ -18,9 +18,9 @@ export default function Header() {
             
           />
         </div>
-        {user.isAuth ? (
+        {user ? (
           <div className="header__profile">
-            <Link to="/profile">{user.user.username}</Link>
+            <Link to="/profile">{user.username}</Link>
           </div>
         ) : (
           <div className="header__login">
