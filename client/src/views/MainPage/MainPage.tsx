@@ -2,8 +2,8 @@ import { useEffect, useState } from "react";
 import { BlogPost } from "../../components/blogpost/BlogPost";
 import { $axiosInstance } from "../../http/axios";
 import "./MainPage.css";
-import { fetchBlogPosts } from "../../store/reducers/BlogPostSlice";
 import { useAppDispatch, useAppSelector } from "../../store/hooks/redux";
+import { blogPostApi } from "../../services/BlogpostService";
 
 type BlogPost = {
   title: string;
@@ -12,13 +12,7 @@ type BlogPost = {
 };
 
 export function MainPage() {
-  const posts = useAppSelector((state) => state.blogpostReducer.blogposts);
-  const isLoading = useAppSelector((state) => state.blogpostReducer.loading);
-
-  const dispatch = useAppDispatch();
-  useEffect(() => {
-    dispatch(fetchBlogPosts());
-  }, []);
+  const { data: posts, error, isLoading } = blogPostApi.useFetchBlogPostsQuery();
 
   return (
     <div className="mainpage">
@@ -26,7 +20,7 @@ export function MainPage() {
         {isLoading ? (
           <h1>Loading...</h1>
         ) : (
-          posts.map((post, key) => (
+          posts?.map((post: any, key: any) => (
             <BlogPost
               key={key}
               title={post.title}
