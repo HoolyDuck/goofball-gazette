@@ -11,7 +11,7 @@ async function bootstrap() {
     origin: ["http://localhost:5173", "http://127.0.0.1:5173"],
     credentials: true,
     preflightContinue: false,
-    allowedHeaders: 'Content-Type, Accept',
+    allowedHeaders: 'Content-Type, Accept, Authorization',
   });
   await app.listen(3000);
 }
