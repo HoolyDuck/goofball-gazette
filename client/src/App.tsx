@@ -1,9 +1,4 @@
-import { useEffect, useState } from "react";
-import reactLogo from "./assets/react.svg";
 import "./App.css";
-import { useAppDispatch, useAppSelector } from "./store/hooks/redux";
-import { userSlice } from "./store/reducers/UserSlice";
-import { auth, login } from "./store/reducers/ActionCreators";
 import { Link, Route, Router, Routes } from "react-router-dom";
 import { Login } from "./components/login/Login";
 import Header from "./components/header/Header";
