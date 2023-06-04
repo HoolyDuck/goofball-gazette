@@ -4,10 +4,11 @@ import "./Login.css";
 import { useAppDispatch, useAppSelector } from "../../store/hooks/redux";
 import { login, register } from "../../store/reducers/ActionCreators";
 import { Link, Route, useNavigate, useLocation } from "react-router-dom";
+import { authApi } from "../../services/AuthService";
+import { setUser } from "../../store/reducers/authSlice";
 
 export function Login() {
   const dispatch = useAppDispatch();
-  const user = useAppSelector((state) => state.userReducer);
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -18,13 +19,16 @@ export function Login() {
 
   const navigate = useNavigate();
 
+  const [apiLogin, {isLoading: isLoginLoading}] = authApi.useLoginMutation();
+  const [apiRegister, {isLoading: isRegisterLoading}] = authApi.useRegisterMutation();
+
   return (
     <div className="login_view">
       <form className="login_form">
         <h1 className="login_form__signin">
           {isRegister ? "Sign up" : "Sign in"}
         </h1>
-        {user.error && <p className="error_text">{user.error}</p>}
+      
 
         {isRegister && (
           <div className="login_form__element">
@@ -118,30 +122,28 @@ export function Login() {
     </div>
   );
 
-  function buttonLogin(e: any) {
+  async function buttonLogin(e: any) {
     e.preventDefault();
-    dispatch(
-      login(
-        {
-          username: email,
-          password: password,
-        },
-        () => navigate("/", { replace: true })
-      )
-    );
+  
+    const data = await apiLogin({
+      username: email,
+      password: password,
+    }).unwrap();
+
+    dispatch(setUser({user: data}));
+    navigate("/", { replace: true });
   }
 
-  function buttonRegister(e: any) {
+  async function buttonRegister(e: any) {
     e.preventDefault();
-    dispatch(
-      register(
-        {
-          username: userName,
-          email: email,
-          password: password,
-        },
-        () => navigate("/", { replace: true })
-      )
-    );
+    
+    const data = await apiRegister({
+      username: userName,
+      email: email,
+      password: password,
+    }).unwrap();
+
+    dispatch(setUser({user: data}));
+    navigate("/", { replace: true });
   }
 }
