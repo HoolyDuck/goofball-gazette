@@ -19,7 +19,7 @@ export class UserService {
     return await this.userRepository.findOneBy({ id });
   }
 
-  async create(user: UserCreateDto): Promise<any> {
+  async create(user: UserCreateDto): Promise<User> {
     console.log(user);
     return await this.userRepository.save(user);
   }

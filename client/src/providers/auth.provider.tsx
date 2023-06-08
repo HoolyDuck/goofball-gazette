@@ -6,7 +6,6 @@ import { selectUser } from "../store/reducers/authSlice";
 
 function AuthProvider(props: PropsWithChildren): JSX.Element {
   const dispatch = useAppDispatch();
-  const user = useAppSelector(selectUser);
   const { data: apiUser, isLoading } = authApi.useAuthQuery();
 
   useEffect(() => {

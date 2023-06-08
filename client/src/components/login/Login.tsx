@@ -2,7 +2,6 @@ import { useState } from "react";
 
 import "./Login.css";
 import { useAppDispatch, useAppSelector } from "../../store/hooks/redux";
-import { login, register } from "../../store/reducers/ActionCreators";
 import { Link, Route, useNavigate, useLocation } from "react-router-dom";
 import { authApi } from "../../services/AuthService";
 import { setUser } from "../../store/reducers/authSlice";
