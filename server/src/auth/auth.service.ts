@@ -16,7 +16,7 @@ export class AuthService {
     return this.generateJWT(user);
   }
 
-  async register(user: UserCreateDto): Promise<{ newUser: User, token: string }> {
+  async register(user: UserCreateDto): Promise<{ newUser: any, token: string }> {
     const userExists = await this.userService.findByEmail(user.email);
 
     if (userExists) {
@@ -24,14 +24,19 @@ export class AuthService {
     }
 
     const hashPass = await bcrypt.hash(user.password, 5);
-    const newUser = await this.userService.create({
+    const newUser: User = await this.userService.create({
       ...user,
       password: hashPass,
     });
 
     const { access_token } = await this.generateJWT(newUser);
 
-    return { newUser: newUser, token: access_token };
+    return { 
+      newUser: { 
+        id: newUser.id,
+        username: newUser.username,
+        email: newUser.email,
+      }, token: access_token };
 
   }
 
