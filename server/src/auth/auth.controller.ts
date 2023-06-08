@@ -12,17 +12,17 @@ export class AuthController {
   @Post('login')
   @UseGuards(AuthGuard('local'))
   async login(
-    @Req() req: Request,
+    @Req() request: Request,
     @Res({ passthrough: true }) response: Response,
   ) {
-    const { access_token } = await this.authService.login(<User>req.user);
+    const { access_token } = await this.authService.login(<User>request.user);
 
     response.cookie('access_token', access_token, {
       httpOnly: true,
       expires: new Date(Date.now() + 900000),
     });
 
-    return <User>req.user;
+    return <User>request.user;
   }
 
   @Post('register')
@@ -42,7 +42,7 @@ export class AuthController {
 
   @Get('auth')
   @UseGuards(AuthGuard('jwt'))
-  async auth(@Req() req: Request) {
-    return <User>req.user;
+  async auth(@Req() request: Request) {
+    return <User>request.user;
   }
 }
