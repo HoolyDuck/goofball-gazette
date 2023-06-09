@@ -3,43 +3,33 @@ import {Get, Post, Req, Res} from "@nestjs/common"
 import { CommentsService } from './comments.service';
 import { AuthGuard } from '@nestjs/passport';
 import { User } from 'src/entities/user.entity';
-import { Comment } from 'src/entities/comment.entity';
 import { CreateCommentDto } from './dto/create-comment.dto';
-import { BlogPost } from 'src/entities/blogpost.entity';
+import { BlogpostsService } from 'src/blogposts/blogposts.service';
 
 @Controller('comments')
 export class CommentsController {
 
     constructor(
-        private commentsService: CommentsService
-    ) {
-
-    }
+        private commentsService: CommentsService,
+        private blogPostsService: BlogpostsService,
+    ) {}
 
     @Get()
-    async getComments(@Req() req) {
-        const comments = await this.commentsService.getComments();
-        return comments;
+    async getComments() {
+        return await this.commentsService.getComments();
     }
 
     @Post()
     @UseGuards(AuthGuard('jwt'))
-    async createComment(@Req() req, @Body() comment: CreateCommentDto) {
-        const user = <User>req.user;
+    async createComment(@Req() request, @Body() comment: CreateCommentDto) {
+        const user = <User>request.user;
+        const blogPost = await this.blogPostsService.findOne(comment.blogPostId);
 
-        const newComment = new Comment();
-        const blogPost = new BlogPost();
-        blogPost.id = comment.blogPostId;
-
-        newComment.content = comment.content;
-        newComment.user = user;
-        newComment.blogPost = blogPost;
-        
-        return await this.commentsService.createComment(newComment);
+        return await this.commentsService.createComment(comment, blogPost, user);
     }
 
     @Get('blogpost/:id')
-    async getCommentsByBlogPostId(@Req() req, @Param("id") id) {
+    async getCommentsByBlogPostId(@Param("id") id) {
         return await this.commentsService.getCommentsByBlogPostId(id);
     }
 

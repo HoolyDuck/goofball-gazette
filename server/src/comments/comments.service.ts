@@ -4,6 +4,8 @@ import { Repository } from 'typeorm';
 import { BlogpostsService } from 'src/blogposts/blogposts.service';
 import { Comment } from 'src/entities/comment.entity';
 import { BlogPost } from 'src/entities/blogpost.entity';
+import { CreateCommentDto } from './dto/create-comment.dto';
+import { User } from 'src/entities/user.entity';
 
 @Injectable()
 export class CommentsService {
@@ -14,9 +16,14 @@ export class CommentsService {
     private blogPostsRepository: Repository<BlogPost>,
   ) {}
 
-  async createComment(comment: Comment) {
-    const newComment = this.commentsRepository.create(comment);
-    return this.commentsRepository.save(newComment);
+  async createComment(comment: CreateCommentDto, blogPost: BlogPost,  user: User) {
+    const commentToDb = {
+      ...comment,
+      user: user,
+      blogPost: blogPost,
+    };
+
+    return this.commentsRepository.save(commentToDb);
   }
 
   async getComments() {
