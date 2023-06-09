@@ -3,7 +3,7 @@ import {Get, Post, Req, Res} from "@nestjs/common"
 import { CommentsService } from './comments.service';
 import { AuthGuard } from '@nestjs/passport';
 import { User } from 'src/entities/user.entity';
-import { CreateCommentDto } from './dto/create-comment.dto';
+import { CreateCommentDto } from '../dto/create-comment.dto';
 import { BlogpostsService } from 'src/blogposts/blogposts.service';
 
 @Controller('comments')
