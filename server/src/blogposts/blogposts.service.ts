@@ -24,20 +24,9 @@ export class BlogpostsService {
         return await this.blogPostRepository.findOneBy({ id: id });
     }
 
-    async create(blogPost: BlogPost) {
-        return await this.blogPostRepository.save(blogPost);
+    async create(blogPost: CreateBlogPostDto, user: User) {
+        const blogpostToDb = { ...blogPost, user: user}
+        return await this.blogPostRepository.save(blogpostToDb);
     }
-
-    async update(id: number, blogPost: BlogPost) {
-        return await this.blogPostRepository.update(id, blogPost);
-    }
-
-    async delete(id: number) {
-        return await this.blogPostRepository.delete(id);
-    }
-
-
-
-
 
 }
