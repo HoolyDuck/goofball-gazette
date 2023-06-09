@@ -3,7 +3,7 @@ import { BlogpostsService } from './blogposts.service';
 import { Get, Post, Put, Delete, Param, Body } from '@nestjs/common';
 import { BlogPost } from 'src/entities/blogpost.entity';
 import { AuthGuard } from '@nestjs/passport';
-import { CreateBlogPostDto } from './dto/create-blogpost.dto';
+import { CreateBlogPostDto } from "src/dto/create-blogpost.dto";
 import { User } from 'src/entities/user.entity';
 import { Request } from 'express';
 
