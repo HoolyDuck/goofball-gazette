@@ -3,7 +3,7 @@ import { BlogpostsService } from './blogposts.service';
 import { Get, Post, Put, Delete, Param, Body } from '@nestjs/common';
 import { BlogPost } from 'src/entities/blogpost.entity';
 import { AuthGuard } from '@nestjs/passport';
-import { CreateBlogPostDto } from './dto/create-blogpost.dto';
+import { CreateBlogPostDto } from "src/dto/create-blogpost.dto";
 import { User } from 'src/entities/user.entity';
 import { Request } from 'express';
 
@@ -23,13 +23,9 @@ export class BlogpostsController {
 
   @Post()
   @UseGuards(AuthGuard('jwt'))
-  async create(@Req() req: Request, @Body() blogPost: CreateBlogPostDto) {
+  async create(@Req() req: Request, @Body() blogpost: CreateBlogPostDto) {
     const user = <User>req.user;
-    const newblogPost = new BlogPost();
-    newblogPost.title = blogPost.title;
-    newblogPost.content = blogPost.content;
-    newblogPost.user = user;
-    return await this.blogpostsService.create(newblogPost);
+    return await this.blogpostsService.create(blogpost, user);
   }
 
 }
