@@ -12,12 +12,34 @@
 .blogpost_page__article {
     display: flex;
     flex-direction: column;
+    padding: 0 1.5rem;
     gap: 1rem;
     width: 70%;
 }
 
 .blogpost_page__article img {
     width: 100%;
+    max-width: 40rem;
     object-fit: cover;
     object-position: center;
+}
+
+.blogpost_page__comment {
+  padding: 0 1.5rem;
+}
+
+.blogpost_page__comment__username {
+  font-weight: 700;
+  font-size: 1.2rem;
+  margin-bottom: .5rem;
+}
+
+.blogpost_page__comment__content::before {
+  content: '';
+  display: inline-block;
+  width: 4px;
+  height: 12px;
+  background-color: #000000;
+  border-radius: 50%;
+  margin-right: .5rem;
 }

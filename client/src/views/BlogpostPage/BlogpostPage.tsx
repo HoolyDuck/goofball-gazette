@@ -25,9 +25,9 @@ export function BlogpostPage() {
             className="blogpost_page__comment"
             key={key}
           >
-            <h3 className="blogpost_page__comment__username">
+            <p className="blogpost_page__comment__username">
               {comment.user.username}
-            </h3>
+            </p>
             <p className="blogpost_page__comment__content">{comment.content}</p>
           </div>
         ))}
