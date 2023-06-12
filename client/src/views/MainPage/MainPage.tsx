@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { BlogPost } from "../../components/blogpost/BlogPost";
-import { $axiosInstance } from "../../http/axios";
 import "./MainPage.css";
 import { useAppDispatch, useAppSelector } from "../../store/hooks/redux";
 import { blogPostApi } from "../../services/BlogpostService";
@@ -23,6 +22,7 @@ export function MainPage() {
           posts?.map((post: any, key: any) => (
             <BlogPost
               key={key}
+              id={post.id}
               title={post.title}
               content={post.content}
               description={post.description}
