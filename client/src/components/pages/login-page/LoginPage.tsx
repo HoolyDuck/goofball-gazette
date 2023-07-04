@@ -11,7 +11,6 @@ export function LoginPage() {
     <div className={styles["login-page"]}>
       <div className={styles["content"]}>
         <HeaderBlock
-          className={styles["header-block"]}
           title="Sign in"
         />
         <LoginForm />

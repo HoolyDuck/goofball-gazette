@@ -6,7 +6,7 @@ interface HeaderBlockProps {
 }
 
 export default function HeaderBlock(props: HeaderBlockProps) {
-  return <h1 className={styles["header-block"] + " " + props.className}>
+  return <h1 className={styles["header-block"]}>
     {props.title}
   </h1>;
 }
