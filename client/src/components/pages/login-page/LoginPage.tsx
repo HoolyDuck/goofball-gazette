@@ -9,8 +9,6 @@ import RegisterBlock from "./components/register-block/RegisterBlock";
 export function LoginPage() {
   return (
     <div className={styles["login-page"]}>
-      {" "}
-      {/* convert to layout component*/}
       <div className={styles["content"]}>
         <HeaderBlock
           className={styles["header-block"]}
