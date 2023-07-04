@@ -4,6 +4,7 @@ import { LoginForm } from "./components/login-form/LoginForm";
 
 import styles from "./LoginPage.module.scss";
 import HeaderBlock from "./components/header-block/HeaderBlock";
+import RegisterBlock from "./components/register-block/RegisterBlock";
 
 export function LoginPage() {
   return (
@@ -16,6 +17,7 @@ export function LoginPage() {
           title="Sign in"
         />
         <LoginForm />
+        <RegisterBlock />
       </div>
     </div>
   );
