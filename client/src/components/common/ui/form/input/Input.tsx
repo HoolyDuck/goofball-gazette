@@ -6,7 +6,7 @@ interface InputProps {
     type: string;
     placeholder: string;
     className: string;
-    onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+    onInput?: (e: React.FormEvent<HTMLInputElement>) => void;
 }
 
 export default function Input(props: InputProps) {
@@ -16,7 +16,7 @@ export default function Input(props: InputProps) {
             {props.label && <label>{props.label}</label>}
             <div className={styles["input__wrapper"]}>
                 <input
-                    onChange={props.onChange}
+                    onInput={props.onInput}
                     type={props.type}
                     placeholder={props.placeholder}
                 />
